@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dimsum Mafa</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg,#fff7ed,#fde68a);
+  padding: 15px;
+}
+.container {
+  max-width: 380px;
+  margin: auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+h1 {
+  text-align: center;
+  margin-bottom: 6px;
+}
+.tagline {
+  text-align: center;
+  font-size: 13px;
+  color: #f59e0b;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+.frame {
+  border: 2px dashed #fde68a;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 15px;
+}
+.menu-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.qty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+input[type="number"] {
+  width: 80px;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  resize: none;
+}
+.total {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 18px 0;
+}
+button {
+  width: 100%;
+  padding: 15px;
+  background: #25D366;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.info {
+  font-size: 13px;
+  margin-top: 15px;
+  background: #fef3c7;
+  padding: 12px;
+  border-radius: 12px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <h1>🥟 DIMSUM MAFA</h1>
+  <div class="tagline">DIMSUM LARGE • ENAK • HARGA AFFORDABLE</div>
+
+  <!-- MENU -->
+  <div class="frame">
+    <div class="menu-title">🥢 Dimsum 5 pcs</div>
+    Harga: <b>Rp15.000</b><br><br>
+    <div class="qty">
+      Jumlah:
+      <input type="number" id="qty" value="1" min="1" onchange="hitung()">
+    </div>
+  </div>
+
+  <!-- MENU LAIN -->
+  <div class="frame">
+    ⏳ <i>Menu lain belum tersedia</i>
+  </div>
+
+  <!-- CATATAN -->
+  <div class="frame">
+    📝 <b>Catatan Pesanan</b><br><br>
+    <textarea id="catatan" rows="3" placeholder="Contoh: pedas / tidak pedas, tanpa saus, dll"></textarea>
+  </div>
+
+  <div class="total">
+    💰 Total: Rp <span id="total">15000</span>
+  </div>
+
+  <button onclick="orderWA()">📲 ORDER VIA WHATSAPP</button>
+
+  <div class="info">
+    <b>💳 Pembayaran:</b><br>
+    BSI<br>
+    a.n. Ma Faqih Alfathi<br>
+    <b>7283043341</b>
+  </div>
+
+</div>
+
+<script>
+function hitung() {
+  let qty = document.getElementById("qty").value;
+  document.getElementById("total").innerText = qty * 15000;
+}
+
+function orderWA() {
+  let qty = document.getElementById("qty").value;
+  let total = qty * 15000;
+  let catatan = document.getElementById("catatan").value;
+
+  let pesan =
+`Halo DIMSUM MAFA 🥟
+
+Saya mau order:
+- Dimsum 5 pcs x ${qty}
+Total: Rp ${total}
+
+Catatan:
+${catatan || "-"}
+
+Pembayaran via BSI
+7283043341 ma faqih alfathi 🙏`;
+
+  let nomorWA = "6285353733995";
+  window.open(`https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`, "_blank");
+}
+</script>
+
+</body>
+</html>
